@@ -1,5 +1,8 @@
 package labb6.simulator;
 
-public class Event {
-
+public abstract class Event {
+	
+	public double time;
+	
+	public abstract void Execute(SortedSequence queue, SimState state);
 }
