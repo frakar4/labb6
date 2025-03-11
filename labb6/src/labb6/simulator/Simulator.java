@@ -1,4 +1,4 @@
-package simulator;
+package labb6.simulator;
 
 public class Simulator {
 
