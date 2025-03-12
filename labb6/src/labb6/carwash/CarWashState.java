@@ -29,7 +29,7 @@ public class CarWashState extends SimState{
 	int availableSlowMachines = 2;
 	
 	
-	double[] fastDistribution = {2.8, 4,6};
+	double[] fastDistribution = {2.8, 4.6};
 	double fastLowerDist = 2.8;
 	double fastUpperDist = 4.6;
 	double slowLowerDist = 3.5;

@@ -50,7 +50,7 @@ public class CarWashView extends SimView {
 	public void beforeRun() {
 		System.out.println("Fast Machines: " + state.getTotalFast());
 		System.out.println("Slow Machines: " + state.getTotalSlow());
-		System.out.println("Fast Distribution: " + state.getFastDistribution()[0] + + state.getFastDistribution()[1]);
+		System.out.println("Fast Distribution: (" + state.getFastDistribution()[0] + ", " + state.getFastDistribution()[1] + ")");
 		
 	}
 
