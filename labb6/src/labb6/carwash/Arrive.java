@@ -19,7 +19,7 @@ public class Arrive extends Event{
 	public void execute(EventQueue queue) {
 		CarWashState.currentEvent = "ARRIVE";
 		double nextTime = new ExponentialRandomStream(1).next();
-		Arrive nextCarArrive = new Arrive(nextTime, state);
+		Arrive nextCarArrive = new Arrive(state);
 		Car car = new Car();
 		double leaveTime;
 		if (state.fastAvailable()) {
