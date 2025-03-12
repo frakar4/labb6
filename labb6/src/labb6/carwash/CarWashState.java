@@ -1,5 +1,6 @@
 package labb6.carwash;
 
+import labb6.simulator.Event;
 import labb6.simulator.SimState;
 import labb6.random.*;
 
@@ -14,6 +15,8 @@ public class CarWashState extends SimState{
 	double currentTime = 0;
 	double totalQueueTime = 0;
 	double totalIdleTime = 0;
+	double currentQueueTime = 0;
+	double previousIdleTime = 0;
 	
 	int totalFastMachines = 2;
 	int totalSlowMachines = 2;
@@ -63,5 +66,12 @@ public class CarWashState extends SimState{
 		return maxQueueSize;
 	}
 	
+	void updateTotalIdleTime(Event event) {
+		totalIdleTime += (event.getTime() - previousIdleTime)*(availableFastMachines + availableSlowMachines);
+		previousIdleTime = event.getTime();
+	}
 	
+	void updateTotalQueueTime(Event event) {
+		
+	}
 }

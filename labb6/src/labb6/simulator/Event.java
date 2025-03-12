@@ -8,6 +8,10 @@ public abstract class Event implements Comparable<Event>{
 		this.executeTime = time;
 	}
 	
+	public double getTime() {
+		return executeTime;
+	}
+	
 	@Override
 	public int compareTo(Event event) {
 		return Double.compare(this.executeTime, event.executeTime);
