@@ -7,7 +7,7 @@ public class StopEvent extends Event {
 	}
 
 	@Override
-	public void execute() {
+	public void execute(EventQueue queue) {
 	}
 
 }

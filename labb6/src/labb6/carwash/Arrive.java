@@ -9,8 +9,8 @@ public class Arrive extends Event{
 	private EventQueue queue;
 	private CarWashState state;
 
-	public Arrive(EventQueue queue, CarWashState state) {
-		super(0.0); //Uträknad tid här
+	public Arrive(double time, CarWashState state) {
+		super(time); //Uträknad tid här
 		this.state = state;
 		this.queue = queue;
 	}
@@ -19,24 +19,22 @@ public class Arrive extends Event{
 	public void execute(EventQueue queue) {
 		CarWashState.currentEvent = "ARRIVE";
 		double nextTime = new ExponentialRandomStream(1).next();
-		Arrive nextCarArrive = new Arrive(queue, state);
+		Arrive nextCarArrive = new Arrive(nextTime, state);
 		Car car = new Car();
 		double leaveTime;
 		if (state.fastAvailable()) {
-			// add car to fast
+			state.enterFastMachine();
 			leaveTime = state.getFastWashTime();
 		} else if (state.slowAvailable()) {
-			// add car to slow
+			state.enterSlowMachine();
 			leaveTime = state.getSlowWashTime();
-		} else if (/*queue avalible*/ true) {
-			// add car to queue
+		} else if (!state.carQueueFull()) {
+			state.addCarInQueue(car);
 		} else {
-			// reject car
+			state.carRejected();
 			return;
 		}
-		
-		
-		//Räkna ut leave-tider beroende på vad som är ledigt
+		// notify state event happened
 	}
 
 }
