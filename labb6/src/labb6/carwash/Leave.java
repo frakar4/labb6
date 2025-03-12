@@ -2,17 +2,16 @@ package labb6.carwash;
 
 import labb6.simulator.Event;
 import labb6.simulator.EventQueue;
-import labb6.simulator.SimState;
 
 public class Leave extends Event{
 	
 	private Car car;
 	private CarWashState carWashState;
 	//TODO en del beräkningar att göra
-	public Leave(double time, double washTime, Car car, SimState state) {
+	public Leave(double time, double washTime, Car car, CarWashState state) {
 		super(time + washTime);
 		this.car = car;
-		carWashState = (CarWashState) state;
+		carWashState = state;
 		
 	}
 
@@ -27,12 +26,18 @@ public class Leave extends Event{
 				firstCar.setMachine("FAST");
 				carWashState.enterFastMachine();
 				double washTime = carWashState.getFastWashTime();
-				
-				
+				queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
 			}
 			
 		} else if(car.getMachine().equals("SLOW")) {
 			carWashState.leaveSlowMachine();
+			if(!carWashState.carQueueEmpty()) {
+				Car firstCar = carWashState.getFirstCarFromQueue();
+				firstCar.setMachine("SLOW");
+				carWashState.enterSlowMachine();
+				double washTime = carWashState.getSlowWashTime();
+				queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
+			}
 		}
 	}
 
