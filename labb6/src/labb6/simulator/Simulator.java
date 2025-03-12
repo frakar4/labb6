@@ -14,9 +14,16 @@ public class Simulator {
 
 	public void run() {
 		simView.beforeRun();
-		while (simState.isRunning() == true) {
+//		while (simState.isRunning() == true) {
+//			Event currentEvent = eventQueue.getNextEvent();
+//			currentEvent.Execute(eventQueue, simState);
+//		}
+		while (true) {
 			Event currentEvent = eventQueue.getNextEvent();
-			currentEvent.Execute(eventQueue, simState);
+			currentEvent.execute(eventQueue, simState);
+			if(currentEvent instanceof StopEvent) {
+				break;
+			}
 		}
 		simView.afterRun();
 	}

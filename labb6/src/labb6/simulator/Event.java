@@ -13,5 +13,5 @@ public abstract class Event implements Comparable<Event>{
 		return Double.compare(this.executeTime, event.executeTime);
 	}
 
-	public abstract void Execute(EventQueue queue, SimState state);
+	public abstract void execute(EventQueue queue, SimState state);
 }
