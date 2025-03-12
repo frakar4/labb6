@@ -13,8 +13,9 @@ public class MainSim {
 	public static void main(String[] args) {
 		CarWashState state = new CarWashState();
 		CarWashView view = new CarWashView(state);
-		Event[] initialEvents = {new StartEvent(), new StopEvent(15.0), new Arrive()};
+		Event[] initialEvents = {new StartEvent(), new StopEvent(15.0)};
 		EventQueue queue = new EventQueue(initialEvents);
+		queue.addEvent(new Arrive(queue, state));
 		Simulator sim = new Simulator(state, view, queue);
 		sim.run();
 	}
