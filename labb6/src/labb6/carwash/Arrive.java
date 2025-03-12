@@ -11,7 +11,7 @@ public class Arrive extends Event{
 	}
 
 	@Override
-	public void Execute(EventQueue queue, SimState state) {
+	public void execute(EventQueue queue, SimState state) {
 		CarWashState.currentEvent = "ARRIVE";
 		queue.addEvent(new Arrive());
 		

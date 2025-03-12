@@ -13,7 +13,7 @@ public class Leave extends Event{
 	}
 
 	@Override
-	public void Execute(EventQueue queue, SimState state) {
+	public void execute(EventQueue queue, SimState state) {
 		CarWashState.currentEvent = "LEAVE";
 	}
 
