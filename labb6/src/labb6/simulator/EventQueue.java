@@ -1,20 +1,20 @@
 package labb6.simulator;
 
-import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class EventQueue {
+
+	private PriorityQueue<Event> sortedQueue = new PriorityQueue<Event>();
 	
-	private ArrayList<Event> eventQueue = new ArrayList<Event>();
-	
-	public ArrayList<Event> getEventList(){
-		return eventQueue;
+	public PriorityQueue<Event> getSortedQueue(){
+		return sortedQueue;
 	}
 	
-	public Event getFirstEvent() {
-		return eventQueue.remove(0);
+	public Event getNextEvent() {
+		return sortedQueue.poll();
 	}
 	
 	public void addEvent(Event event) {
-		eventQueue.add(event);
+		sortedQueue.add(event);
 	}
 }
