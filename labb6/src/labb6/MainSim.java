@@ -18,6 +18,5 @@ public class MainSim {
 		queue.addEvent(new Arrive(queue, state));
 		Simulator sim = new Simulator(state, view, queue);
 		sim.run();
-		//HELLO
 	}
 }
