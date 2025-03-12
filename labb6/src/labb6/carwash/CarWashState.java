@@ -13,30 +13,29 @@ public class CarWashState extends SimState{
 	//TODO Kontrollera vad som ska vara publikt, privat och/eller static
 	
 	static String currentEvent = "";
-	int rejectedCars = 0;
-	int maxQueueSize = 5;
+	private int rejectedCars = 0;
+	private int maxQueueSize = 5;
 	Deque<Car> carQueue = new LinkedList<Car>();
 	
-	double currentTime = 0;
-	double totalQueueTime = 0;
-	double totalIdleTime = 0;
-	double previousQueueTime = 0;
-	double previousIdleTime = 0;
+	private double currentTime = 0;
+	private double totalQueueTime = 0;
+	private double totalIdleTime = 0;
+	private double previousQueueTime = 0;
+	private double previousIdleTime = 0;
 	
-	int totalFastMachines = 2;
-	int totalSlowMachines = 2;
-	int availableFastMachines = 2;
-	int availableSlowMachines = 2;
+	private int totalFastMachines = 2;
+	private int totalSlowMachines = 2;
+	private int availableFastMachines = 2;
+	private int availableSlowMachines = 2;
 	
 	
-	double[] fastDistribution = {2.8, 4.6};
-	double fastLowerDist = 2.8;
-	double fastUpperDist = 4.6;
-	double slowLowerDist = 3.5;
-	double slowUpperDist = 6.7;
+	private double fastLowerDist = 2.8;
+	private double fastUpperDist = 4.6;
+	private double slowLowerDist = 3.5;
+	private double slowUpperDist = 6.7;
 	
-	double lambda = 2;
-	int seed = 1234;
+	private double lambda = 2;
+	private int seed = 1234;
 	
 	private UniformRandomStream fastMachineTime = new UniformRandomStream(fastLowerDist,fastUpperDist,seed);
 	private UniformRandomStream slowMachineTime = new UniformRandomStream(slowLowerDist,slowUpperDist,seed);
@@ -63,7 +62,7 @@ public class CarWashState extends SimState{
 		return carQueue.poll();
 	}
 	
-	double newEventTime() {
+	public double newEventTime() {
 		currentTime += nextArrivalTime.next();
 		return currentTime;
 	}
@@ -86,35 +85,44 @@ public class CarWashState extends SimState{
 	
 	
 	
-	int getAvailableFast() {
+	public int getAvailableFast() {
 		return availableFastMachines;
 	}
-	int getAvailableSlow() {
+	public int getAvailableSlow() {
 		return availableSlowMachines;
 	}
-	double getTotalIdleTime() {
+	public double getTotalIdleTime() {
 		return totalIdleTime;
 	}
-	double getTotalQueueTime() {
+	public double getTotalQueueTime() {
 		return totalQueueTime;
 	}
-	int getQueueSize() {
+	public int getQueueSize() {
 		return carQueue.size();
 	}
-	int getRejectedCars() {
+	public int getRejectedCars() {
 		return rejectedCars;
 	}
 	
-	int getTotalFast() {
+	
+	public int getTotalFast() {
 		return totalFastMachines;
 	}
-	int getTotalSlow() {
+	public int getTotalSlow() {
 		return totalSlowMachines;
 	}
-	double[] getFastDistribution() {
-		return fastDistribution;
+	public double[] getFastDistribution() {
+		return new double[] {fastLowerDist, fastUpperDist};
 	}
-	
+	public double[] getSlowDistribution() {
+		return new double[] {slowLowerDist, slowUpperDist};
+	}
+	public double getLambda() {
+		return lambda;
+	}
+	public int getSeed() {
+		return seed;
+	}
 	
 	
 	void carRejected() {

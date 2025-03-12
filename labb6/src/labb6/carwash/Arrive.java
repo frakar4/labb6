@@ -6,6 +6,7 @@ import labb6.simulator.EventQueue;
 public class Arrive extends Event {
 
 	private CarWashState state;
+	private Car car;
 
 	public Arrive(double time, CarWashState state) {
 		super(time, "Arrive"); 
@@ -18,6 +19,7 @@ public class Arrive extends Event {
 		queue.addEvent(new Arrive(state.newEventTime(), state));
 		
 		Car car = new Car();
+		this.car = car;
 		
 		if (state.fastAvailable()) {
 			
@@ -40,6 +42,10 @@ public class Arrive extends Event {
 			return;
 		}
 		state.eventFinished(this);
+	}
+	
+	public Car getCar() {
+		return car;
 	}
 
 }

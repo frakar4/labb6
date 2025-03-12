@@ -44,4 +44,8 @@ public class Leave extends Event{
 		
 	}
 	
+	public Car getCar() {
+		return car;
+	}
+	
 }
