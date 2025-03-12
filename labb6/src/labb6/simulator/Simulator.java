@@ -20,7 +20,7 @@ public class Simulator {
 //		}
 		while (true) {
 			Event currentEvent = eventQueue.getNextEvent();
-			currentEvent.execute();
+			currentEvent.execute(eventQueue);
 			if(currentEvent instanceof StopEvent) {
 				break;
 			}

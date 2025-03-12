@@ -50,6 +50,10 @@ public class CarWashState extends SimState{
 		return carQueue.size() == 0;
 	}
 	
+	boolean carQueueFull() {
+		return carQueue.size() == maxQueueSize;
+	}
+	
 	void addCarInQueue(Car car) {
 		carQueue.add(car);
 	}
@@ -81,6 +85,10 @@ public class CarWashState extends SimState{
 	
 	int getRejectedCars() {
 		return rejectedCars;
+	}
+	
+	void carRejected() {
+		rejectedCars++;
 	}
 	
 	void updateTotalIdleTime(Event event) {
