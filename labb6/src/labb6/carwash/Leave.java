@@ -17,13 +17,21 @@ public class Leave extends Event{
 	}
 
 	@Override
-	public void execute(EventQueue queue, SimState state) {
+	public void execute() {
 		CarWashState.currentEvent = "LEAVE";
 		
-		if(car.getMachine() == "Fast") {
+		if(car.getMachine().equals("FAST")) {
 			carWashState.leaveFastMachine();
+			if(!carWashState.carQueueEmpty()) {
+				Car firstCar = carWashState.getFirstCarFromQueue();
+				firstCar.setMachine("FAST");
+				carWashState.enterFastMachine();
+				double washTime = carWashState.getFastWashTime();
+				
+				
+			}
 			
-		} else if(car.getMachine() == "Slow") {
+		} else if(car.getMachine().equals("SLOW")) {
 			carWashState.leaveSlowMachine();
 		}
 	}
