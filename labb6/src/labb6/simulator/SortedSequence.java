@@ -1,5 +1,7 @@
 package labb6.simulator;
 
-public class SortedSequence {
+import java.util.PriorityQueue;
+
+public class SortedSequence extends PriorityQueue<Event> {
 	
 }
