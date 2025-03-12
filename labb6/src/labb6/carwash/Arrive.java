@@ -21,7 +21,18 @@ public class Arrive extends Event{
 		double nextTime = new ExponentialRandomStream(1).next();
 		Arrive nextCarArrive = new Arrive(queue, state);
 		Car car = new Car();
+		double leaveTime;
 		if (state.fastAvailable()) {
+			// add car to fast
+			leaveTime = state.getFastWashTime();
+		} else if (state.slowAvailable()) {
+			// add car to slow
+			leaveTime = state.getSlowWashTime();
+		} else if (/*queue avalible*/ true) {
+			// add car to queue
+		} else {
+			// reject car
+			return;
 		}
 		
 		//Räkna ut leave-tider beroende på vad som är ledigt
