@@ -14,7 +14,9 @@ public class Arrive extends Event {
 
 	@Override
 	public void execute(EventQueue queue) {
+		CarWashState.currentEvent = "ARRIVE";
 		queue.addEvent(new Arrive(state.newEventTime(), state));
+		
 		Car car = new Car();
 		
 		if (state.fastAvailable()) {
