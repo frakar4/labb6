@@ -9,6 +9,10 @@ public class Car {
 		this.id = nextId++;
 	}
 	
+	public int getCarID() {
+		return id;
+	}
+	
 	public void setMachine(String machine) {
 		this.fromMachine = machine;
 	}
