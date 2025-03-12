@@ -8,7 +8,7 @@ public class Arrive extends Event {
 	private CarWashState state;
 
 	public Arrive(double time, CarWashState state) {
-		super(time); //Uträknad tid här
+		super(time, "Arrive"); 
 		this.state = state;
 	}
 
@@ -39,8 +39,7 @@ public class Arrive extends Event {
 			state.carRejected();
 			return;
 		}
-		state.eventFinished();
-		// notify state event happened
+		state.eventFinished(this);
 	}
 
 }
