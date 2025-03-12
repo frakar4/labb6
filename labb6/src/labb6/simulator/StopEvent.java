@@ -3,7 +3,7 @@ package labb6.simulator;
 public class StopEvent extends Event {
 
 	public StopEvent(double endTime) {
-		super(endTime);
+		super(endTime,"Stop");
 	}
 
 	@Override
