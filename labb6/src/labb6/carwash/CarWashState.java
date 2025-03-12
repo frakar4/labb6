@@ -20,7 +20,7 @@ public class CarWashState extends SimState{
 	double currentTime = 0;
 	double totalQueueTime = 0;
 	double totalIdleTime = 0;
-	double currentQueueTime = 0;
+	double previousQueueTime = 0;
 	double previousIdleTime = 0;
 	
 	int totalFastMachines = 2;
@@ -97,7 +97,8 @@ public class CarWashState extends SimState{
 	}
 	
 	void updateTotalQueueTime(Event event) {
-		
+		totalQueueTime += (event.getTime() - previousQueueTime)*(carQueue.size());
+		previousQueueTime = event.getTime();
 	}
 	
 	void leaveFastMachine() {
