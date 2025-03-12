@@ -17,7 +17,7 @@ public class Leave extends Event{
 	}
 
 	@Override
-	public void execute() {
+	public void execute(EventQueue queue) {
 		CarWashState.currentEvent = "LEAVE";
 		
 		if(car.getMachine().equals("FAST")) {

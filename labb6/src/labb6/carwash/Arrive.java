@@ -16,7 +16,7 @@ public class Arrive extends Event{
 	}
 
 	@Override
-	public void execute() {
+	public void execute(EventQueue queue) {
 		CarWashState.currentEvent = "ARRIVE";
 		double nextTime = new ExponentialRandomStream(1).next();
 		Arrive nextCarArrive = new Arrive(queue, state);
