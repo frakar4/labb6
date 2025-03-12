@@ -7,7 +7,7 @@ public class StopEvent extends Event {
 	}
 
 	@Override
-	public void execute(EventQueue queue, SimState state) {
+	public void execute() {
 	}
 
 }

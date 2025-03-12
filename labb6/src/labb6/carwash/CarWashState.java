@@ -74,4 +74,5 @@ public class CarWashState extends SimState{
 	void updateTotalQueueTime(Event event) {
 		
 	}
+	
 }
