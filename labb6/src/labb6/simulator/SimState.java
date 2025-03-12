@@ -14,8 +14,8 @@ public class SimState extends Observable {
 		runs = newState;
 	}
 
-	public void eventFinished() {
+	public void eventFinished(Event event) {
 		setChanged();
-		notifyObservers();
+		notifyObservers(event);
 	}
 }
