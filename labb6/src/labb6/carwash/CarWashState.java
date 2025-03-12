@@ -29,6 +29,7 @@ public class CarWashState extends SimState{
 	int availableSlowMachines = 2;
 	
 	
+	double[] fastDistribution = {2.8, 4,6};
 	double fastLowerDist = 2.8;
 	double fastUpperDist = 4.6;
 	double slowLowerDist = 3.5;
@@ -83,9 +84,38 @@ public class CarWashState extends SimState{
 		return availableSlowMachines > 0;
 	}
 	
+	
+	
+	int getAvailableFast() {
+		return availableFastMachines;
+	}
+	int getAvailableSlow() {
+		return availableSlowMachines;
+	}
+	double getTotalIdleTime() {
+		return totalIdleTime;
+	}
+	double getTotalQueueTime() {
+		return totalQueueTime;
+	}
+	int getQueueSize() {
+		return carQueue.size();
+	}
 	int getRejectedCars() {
 		return rejectedCars;
 	}
+	
+	int getTotalFast() {
+		return totalFastMachines;
+	}
+	int getTotalSlow() {
+		return totalSlowMachines;
+	}
+	double[] getFastDistribution() {
+		return fastDistribution;
+	}
+	
+	
 	
 	void carRejected() {
 		rejectedCars++;
