@@ -15,6 +15,7 @@ public class Arrive extends Event{
 		CarWashState.currentEvent = "ARRIVE";
 		queue.addEvent(new Arrive());
 		
+		
 		//Räkna ut leave-tider beroende på vad som är ledigt
 	}
 

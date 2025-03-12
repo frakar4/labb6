@@ -3,8 +3,8 @@ package labb6.carwash;
 import labb6.simulator.Event;
 import labb6.simulator.SimState;
 
+import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 
 import labb6.random.*;
 
@@ -14,9 +14,9 @@ public class CarWashState extends SimState {
 	
 	static String currentEvent = "";
 	int rejectedCars = 0;
-	int maxQueueSize = 5;
-	Queue<Car> carQueue = new LinkedList<Car>();
-	
+	final int maxQueueSize = 5;
+	Deque<Car> carQueue = new LinkedList<Car>();
+
 	double currentTime = 0;
 	double totalQueueTime = 0;
 	double totalIdleTime = 0;
@@ -42,7 +42,6 @@ public class CarWashState extends SimState {
 	private ExponentialRandomStream nextArrivalTime = new ExponentialRandomStream(lambda,seed);
 	
 	//TODO Saknas några getters och setters
-	
 	
 	double newEventTime() {
 		currentTime += nextArrivalTime.next();

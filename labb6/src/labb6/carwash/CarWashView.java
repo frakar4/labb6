@@ -5,7 +5,7 @@ import java.util.Observable;
 import labb6.simulator.SimState;
 import labb6.simulator.SimView;
 
-public class CarWashView extends SimView{
+public class CarWashView extends SimView {
 
 	//TODO någon formatter
 	public CarWashView(SimState state) {
