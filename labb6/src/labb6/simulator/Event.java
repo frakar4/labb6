@@ -11,11 +11,17 @@ public abstract class Event implements Comparable<Event>{
 	/**
 	 * Creates a new event
 	 * @param time The time the event will be executed
+	 * @param name The name of te event
 	 */
 	public Event(double time, String name) {
 		this.executeTime = time;
 		this.name = name;
 	}
+	
+	/**
+	 * Get the name of the event
+	 * @return the name of the event
+	 */
 	
 	public String getName() {
 		return name;

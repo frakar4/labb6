@@ -8,6 +8,9 @@ import java.util.LinkedList;
 
 import labb6.random.*;
 
+/**
+ * 
+ */
 public class CarWashState extends SimState{
 	
 	private int rejectedCars = 0;
