@@ -39,6 +39,8 @@ public class CarWashState extends SimState{
 	private UniformRandomStream fastMachineTime = new UniformRandomStream(fastLowerDist, fastUpperDist, seed);
 	private UniformRandomStream slowMachineTime = new UniformRandomStream(slowLowerDist, slowUpperDist, seed);
 	private ExponentialRandomStream nextArrivalTime = new ExponentialRandomStream(lambda, seed);
+	
+	// ------------ Car Queue --------------
 
 	/**
 	 * Returns the maximum amount of cars allowed in the queue
@@ -51,10 +53,10 @@ public class CarWashState extends SimState{
 
 	/**
 	 * Return whether the queue is full
-	 * 
+	 * TODO Kanske ta bort
 	 * @return a boolean
 	 */
-	boolean carQueueFull() {
+	public boolean carQueueFull() {
 		return carQueue.size() == maxQueueSize;
 	}
 
@@ -63,7 +65,7 @@ public class CarWashState extends SimState{
 	 * 
 	 * @param car the car to be added
 	 */
-	void addCarInQueue(Car car) {
+	public void addCarInQueue(Car car) {
 		carQueue.add(car);
 	}
 
@@ -72,10 +74,21 @@ public class CarWashState extends SimState{
 	 * 
 	 * @return a car
 	 */
-	Car getFirstCarFromQueue() {
+	public Car getFirstCarFromQueue() {
 		return carQueue.poll();
 	}
+	
+	/**
+	 * Return how many cars are are waiting in the queue
+	 * 
+	 * @return an integer
+	 */
+	public int getCarsInQueue() {
+		return carQueue.size();
+	}
 
+	// ------------ Times --------------
+	
 	/**
 	 * Returns the time that the next car will arrive on
 	 * 
@@ -91,7 +104,7 @@ public class CarWashState extends SimState{
 	 * 
 	 * @return a boolean
 	 */
-	double getFastWashTime() {
+	public double getFastWashTime() {
 		return fastMachineTime.next();
 	}
 
@@ -100,50 +113,10 @@ public class CarWashState extends SimState{
 	 * 
 	 * @return
 	 */
-	double getSlowWashTime() {
+	public double getSlowWashTime() {
 		return slowMachineTime.next();
 	}
-
-	/**
-	 * Return whether a fast machine is available
-	 * 
-	 * @return a boolean
-	 */
-	boolean fastAvailable() {
-		return availableFastMachines > 0;
-	}
-
-	/**
-	 * Return whether a slow machine is available
-	 * 
-	 * @return a boolean
-	 */
-	boolean slowAvailable() {
-		return availableSlowMachines > 0;
-	}
 	
-	
-	
-	
-
-	/**
-	 * Return how many fast machines are currently available
-	 * 
-	 * @return an integer
-	 */
-	public int getAvailableFast() {
-		return availableFastMachines;
-	}
-
-	/**
-	 * Return how many slow machines are currently available
-	 * 
-	 * @return an integer
-	 */
-	public int getAvailableSlow() {
-		return availableSlowMachines;
-	}
-
 	/**
 	 * Return the total amount of time a machine has been empty
 	 * 
@@ -161,43 +134,7 @@ public class CarWashState extends SimState{
 	public double getTotalQueueTime() {
 		return totalQueueTime;
 	}
-
-	/**
-	 * Return how many cars are are waiting in the queue
-	 * 
-	 * @return an integer
-	 */
-	public int getCarsInQueue() {
-		return carQueue.size();
-	}
-
-	/**
-	 * Return how many cars have been rejected
-	 * 
-	 * @return an integer
-	 */
-	public int getRejectedCars() {
-		return rejectedCars;
-	}
-
-	/**
-	 * Return the total amount of fast machines
-	 * 
-	 * @return an integer
-	 */
-	public int getTotalFast() {
-		return totalFastMachines;
-	}
-
-	/**
-	 * Return the total amount of slow machines
-	 * 
-	 * @return an integer
-	 */
-	public int getTotalSlow() {
-		return totalSlowMachines;
-	}
-
+	
 	/**
 	 * Get the upper and lower distribution of the time a fast machine can take
 	 * 
@@ -235,22 +172,11 @@ public class CarWashState extends SimState{
 	}
 
 	/**
-	 * Reject a car, incrementing rejectedCars
-	 */
-	void carRejected() {
-		rejectedCars++;
-	}
-	
-	
-	
-	
-
-	/**
 	 * Update the total time a machine has been idling
 	 * 
 	 * @param an event
 	 */
-	void updateTotalIdleTime(Event event) {
+	public void updateTotalIdleTime(Event event) {
 		totalIdleTime += (event.getTime() - previousIdleTime) * (availableFastMachines + availableSlowMachines);
 		previousIdleTime = event.getTime();
 	}
@@ -260,36 +186,110 @@ public class CarWashState extends SimState{
 	 * 
 	 * @param event
 	 */
-	void updateTotalQueueTime(Event event) {
+	public void updateTotalQueueTime(Event event) {
 		totalQueueTime += (event.getTime() - previousQueueTime) * (carQueue.size());
 		previousQueueTime = event.getTime();
 	}
 
+	// ------------ Washing Machines --------------
+	
+	/**
+	 * Return whether a fast machine is available
+	 * 
+	 * @return a boolean
+	 */
+	boolean fastAvailable() {
+		return availableFastMachines > 0;
+	}
+
+	/**
+	 * Return whether a slow machine is available
+	 * 
+	 * @return a boolean
+	 */
+	boolean slowAvailable() {
+		return availableSlowMachines > 0;
+	}
+	
+
+	/**
+	 * Return how many fast machines are currently available
+	 * 
+	 * @return an integer
+	 */
+	public int getAvailableFast() {
+		return availableFastMachines;
+	}
+
+	/**
+	 * Return how many slow machines are currently available
+	 * 
+	 * @return an integer
+	 */
+	public int getAvailableSlow() {
+		return availableSlowMachines;
+	}
+	
+	/**
+	 * Return the total amount of fast machines
+	 * 
+	 * @return an integer
+	 */
+	public int getTotalFast() {
+		return totalFastMachines;
+	}
+
+	/**
+	 * Return the total amount of slow machines
+	 * 
+	 * @return an integer
+	 */
+	public int getTotalSlow() {
+		return totalSlowMachines;
+	}
+
+	/**
+	 * Return how many cars have been rejected
+	 * 
+	 * @return an integer
+	 */
+	public int getRejectedCars() {
+		return rejectedCars;
+	}
+	
+	/**
+	 * Reject a car, incrementing rejectedCars
+	 */
+	public void carRejected() {
+		rejectedCars++;
+	}
+	
+	// ------------ Enters/Leaves Washing Machines --------------
 	/**
 	 * A car leaves a fast machine, leaving a machine available
 	 */
-	void leaveFastMachine() {
+	public void leaveFastMachine() {
 		availableFastMachines++;
 	}
 
 	/**
 	 * A car enters a fast machine, leaving a machine unavailable
 	 */
-	void enterFastMachine() {
+	public void enterFastMachine() {
 		availableFastMachines--;
 	}
 
 	/**
 	 * A car leaves a slow machine, leaving a machine available
 	 */
-	void leaveSlowMachine() {
+	public void leaveSlowMachine() {
 		availableSlowMachines++;
 	}
 
 	/**
 	 * A car enters a slow machine, leaving a machine unavailable
 	 */
-	void enterSlowMachine() {
+	public void enterSlowMachine() {
 		availableSlowMachines--;
 	}
 
