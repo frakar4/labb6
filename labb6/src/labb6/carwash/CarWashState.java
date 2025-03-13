@@ -55,15 +55,6 @@ public class CarWashState extends SimState{
 	}
 
 	/**
-	 * Return whether the queue is full
-	 * TODO Kanske ta bort
-	 * @return a boolean
-	 */
-	public boolean carQueueFull() {
-		return carQueue.size() == maxQueueSize;
-	}
-
-	/**
 	 * Add a car to the queue
 	 * 
 	 * @param car the car to be added

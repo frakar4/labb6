@@ -50,7 +50,7 @@ public class Arrive extends Event {
 			car.setMachine(Machine.SLOW);
 			queue.addEvent(new Leave(this.getTime(),state.getSlowWashTime(),car,state));
 			
-		} else if (!state.carQueueFull()) {
+		} else if (state.getCarsInQueue() < state.getMaxQueueSize()) {
 			state.addCarInQueue(car);
 		} else {
 			state.carRejected();
