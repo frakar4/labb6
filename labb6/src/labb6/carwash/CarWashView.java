@@ -35,6 +35,7 @@ public class CarWashView extends SimView {
 		}
 		else if (arg instanceof StopEvent) {
 			StopEvent event = (StopEvent) arg;
+			state.updateTotalQueueTime(event);
 			System.out.printf(stopTemplate, event.getTime(), event.getName(), state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
@@ -76,7 +77,11 @@ public class CarWashView extends SimView {
 		System.out.print("-----------------------------------------------------------------------------\n");
 		System.out.printf("%-10s %8.2f%n", "Total idle machine time: ", state.getTotalIdleTime());
 		System.out.printf("%-10s %10.2f%n", "Total queueing time: ", state.getTotalQueueTime());
+<<<<<<< HEAD
 		System.out.printf("%-10s %10.2f%n", "Mean queueing time: ", state.getTotalQueueTime()/(biggestId + 1 - state.getRejectedCars()));
+=======
+		System.out.printf("%-10s %10s%n", "Mean queueing time: ", "");
+>>>>>>> branch 'main' of git@github.com:frakar4/labb6.git
 		System.out.printf("%-10s %13s%n", "Rejected cars: ", state.getRejectedCars());
 		
 	}
