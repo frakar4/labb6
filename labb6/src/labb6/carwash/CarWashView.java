@@ -3,7 +3,6 @@ package labb6.carwash;
 import java.util.Observable;
 
 import labb6.simulator.Event;
-import labb6.simulator.SimState;
 import labb6.simulator.SimView;
 import labb6.simulator.StartEvent;
 import labb6.simulator.StopEvent;
