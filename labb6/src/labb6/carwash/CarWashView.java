@@ -38,18 +38,18 @@ public class CarWashView extends SimView {
 			StopEvent event = (StopEvent) arg;
 			state.updateTotalQueueTime(event);
 			updateInfo = String.format(stopTemplate, event.getTime(), event.getName(), state.getAvailableFast(), state.getAvailableSlow(),
-					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
+					state.getTotalIdleTime(), state.getTotalQueueTime(), state.carsInQueue(), state.getRejectedCars());
 		}
 		else if (arg instanceof Arrive) {
 			Arrive event = (Arrive) arg;
 			biggestId = (event.getCar().getCarID() > biggestId) ? event.getCar().getCarID() : biggestId;
 			updateInfo = String.format(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
-					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
+					state.getTotalIdleTime(), state.getTotalQueueTime(), state.carsInQueue(), state.getRejectedCars());
 		}
 		else if (arg instanceof Leave) {
 			Leave event = (Leave) arg;
 			updateInfo = String.format(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
-					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
+					state.getTotalIdleTime(), state.getTotalQueueTime(), state.carsInQueue(), state.getRejectedCars());
 		}
 		System.out.print(updateInfo);
 	}
