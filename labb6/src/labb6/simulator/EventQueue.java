@@ -2,8 +2,17 @@ package labb6.simulator;
 
 import java.util.PriorityQueue;
 
+/**
+ * A sorted list of events where the next event can be called and
+ * new ones can be added to
+ */
 public class EventQueue {
-	PriorityQueue<Event> queue;
+	private PriorityQueue<Event> queue;
+	
+	/**
+	 * Create a new {@code EventQueue}
+	 * @param initialEvents initial events that the queue will contain
+	 */
 	public EventQueue(Event[] initialEvents) {
 		queue = new PriorityQueue<Event>();
 		for (Event e : initialEvents) {
@@ -11,14 +20,19 @@ public class EventQueue {
 		}
 	}
 	
-	public PriorityQueue<Event> getSortedQueue(){
-		return queue;
-	}
-	
+	/**
+	 * Get the next event that should occur, as in 
+	 * the event with the lowest time
+	 * @return the event with the lowest time
+	 */
 	public Event getNextEvent() {
 		return queue.poll();
 	}
 	
+	/**
+	 * Add a new {@code Event} to the queue
+	 * @param event the {@code Event} to be added
+	 */
 	public void addEvent(Event event) {
 		queue.add(event);
 	}

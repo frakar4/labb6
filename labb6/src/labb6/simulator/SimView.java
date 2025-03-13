@@ -2,6 +2,9 @@ package labb6.simulator;
 
 import java.util.Observer;
 
+/**
+ * Draws the result of the simulator
+ */
 public abstract class SimView implements Observer {
 
 	protected SimState currentState;
