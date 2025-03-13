@@ -19,27 +19,28 @@ public class Leave extends Event{
 	public void execute(EventQueue queue) {
 		
 		carWashState.updateTotalQueueTime(this);
+		Car firstCar = null;
+		double washTime = 0;
 		
 		if(car.getMachine().equals("FAST")) {
 			carWashState.leaveFastMachine();
 			if(!carWashState.carQueueEmpty()) {
-				Car firstCar = carWashState.getFirstCarFromQueue();
+				firstCar = carWashState.getFirstCarFromQueue();
 				firstCar.setMachine("FAST");
 				carWashState.enterFastMachine();
-				double washTime = carWashState.getFastWashTime();
-				queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
+				washTime = carWashState.getFastWashTime();
 			}
 			
 		} else if(car.getMachine().equals("SLOW")) {
 			carWashState.leaveSlowMachine();
 			if(!carWashState.carQueueEmpty()) {
-				Car firstCar = carWashState.getFirstCarFromQueue();
+				firstCar = carWashState.getFirstCarFromQueue();
 				firstCar.setMachine("SLOW");
 				carWashState.enterSlowMachine();
-				double washTime = carWashState.getSlowWashTime();
-				queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
+				washTime = carWashState.getSlowWashTime();
 			}
 		}
+		queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
 		carWashState.eventFinished(this);
 		
 	}
