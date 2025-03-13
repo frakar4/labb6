@@ -34,8 +34,8 @@ public class CarWashView extends SimView {
 		if (!(arg instanceof Event))
 			throw new IllegalArgumentException("CarWashView needs an Event.");
 		
-		String template = "%10.2f %10s %10s %10s %10s %10.2f %10.2f %10s %10s%n";
-		String stopTemplate = "%10.2f %10s %21s %10s %10.2f %10.2f %10s %10s%n";
+		String template = "%10.2f %10s %10s %8s %10s %9.2f %9.2f %10s %10s%n";
+		String stopTemplate = "%10.2f %10s %19s %10s %9.2f %9.2f %10s %10s%n";
 		String updateInfo;
 		
 		if (arg instanceof StartEvent) {
