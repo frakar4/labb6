@@ -14,7 +14,7 @@ import labb6.simulator.StopEvent;
 public class CarWashView extends SimView {
 	
 	CarWashState state;
-	int biggestId;
+	int biggestId = 0;
 	
 
 	/**
@@ -24,7 +24,6 @@ public class CarWashView extends SimView {
 	public CarWashView(CarWashState state) {
 		super(state);
 		this.state = state;
-		this.biggestId = 0;
 	}
 
 	/**
