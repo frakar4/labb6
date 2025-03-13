@@ -2,6 +2,9 @@ package labb6.simulator;
 
 /**
  * The actual simulator containing the main loop
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public class Simulator {
 

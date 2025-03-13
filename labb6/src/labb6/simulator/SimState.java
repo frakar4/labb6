@@ -4,6 +4,9 @@ import java.util.Observable;
 
 /**
  * The central state of the simulator
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public class SimState extends Observable {
 	

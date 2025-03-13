@@ -9,8 +9,10 @@ import labb6.simulator.StopEvent;
 
 /**
  * Draws the result of the carwash simulator
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
-
 public class CarWashView extends SimView {
 	
 	CarWashState state;
