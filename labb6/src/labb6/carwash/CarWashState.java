@@ -8,18 +8,8 @@ import java.util.LinkedList;
 
 import labb6.random.*;
 
-/**
-<<<<<<< HEAD
- * The central state of the car wash that the events will modify
- */
-public class CarWashState extends SimState {
-
-=======
- * 
- */
 public class CarWashState extends SimState{
 	
->>>>>>> branch 'main' of git@github.com:frakar4/labb6.git
 	private int rejectedCars = 0;
 	private int maxQueueSize = 5;
 	Deque<Car> carQueue = new LinkedList<Car>();
@@ -29,11 +19,6 @@ public class CarWashState extends SimState{
 	private double totalIdleTime = 0;
 	private double previousQueueTime = 0;
 	private double previousIdleTime = 0;
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> branch 'main' of git@github.com:frakar4/labb6.git
 	private final int totalFastMachines = 2;
 	private final int totalSlowMachines = 2;
 	private int availableFastMachines = totalFastMachines;
