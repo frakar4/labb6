@@ -39,8 +39,8 @@ public class Leave extends Event {
 		if (car.getMachine() == Machine.FAST) {
 			
 			carWashState.leaveFastMachine();
-			
-			if (!carWashState.carQueueEmpty()) {
+
+			if(carWashState.getCarsInQueue() > 0) {
 				firstCar = carWashState.getFirstCarFromQueue();
 				firstCar.setMachine(Machine.FAST);
 				
@@ -52,8 +52,9 @@ public class Leave extends Event {
 		} else if (car.getMachine() == Machine.SLOW) {
 			
 			carWashState.leaveSlowMachine();
-			
-			if (!carWashState.carQueueEmpty()) {
+
+			if(carWashState.getCarsInQueue() > 0) {
+
 				firstCar = carWashState.getFirstCarFromQueue();
 				firstCar.setMachine(Machine.SLOW);
 				

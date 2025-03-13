@@ -3,10 +3,13 @@ package labb6.carwash;
 import java.util.Observable;
 
 import labb6.simulator.Event;
-import labb6.simulator.SimState;
 import labb6.simulator.SimView;
 import labb6.simulator.StartEvent;
 import labb6.simulator.StopEvent;
+
+/**
+ * Draws the result of the carwash simulator
+ */
 
 public class CarWashView extends SimView {
 	
@@ -14,12 +17,19 @@ public class CarWashView extends SimView {
 	int biggestId;
 	
 
+	/**
+	 * 
+	 * @param state the CarWashState that the view observes
+	 */
 	public CarWashView(CarWashState state) {
 		super(state);
 		this.state = state;
 		this.biggestId = 0;
 	}
 
+	/**
+	 * Runs when the observed CarWashState gets modified
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		if (!(arg instanceof Event))
@@ -37,18 +47,18 @@ public class CarWashView extends SimView {
 			StopEvent event = (StopEvent) arg;
 			state.updateTotalQueueTime(event);
 			updateInfo = String.format(stopTemplate, event.getTime(), "Stop", state.getAvailableFast(), state.getAvailableSlow(),
-					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
+					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getCarsInQueue(), state.getRejectedCars());
 		}
 		else if (arg instanceof Arrive) {
 			Arrive event = (Arrive) arg;
 			biggestId = (event.getCar().getCarID() > biggestId) ? event.getCar().getCarID() : biggestId;
 			updateInfo = String.format(template, event.getTime(), "Arrive", event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
-					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
+					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getCarsInQueue(), state.getRejectedCars());
 		}
 		else if (arg instanceof Leave) {
 			Leave event = (Leave) arg;
 			updateInfo = String.format(template, event.getTime(), "Leave", event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
-					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
+					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getCarsInQueue(), state.getRejectedCars());
 		}
 		else {
 			Event event = (Event) arg;
@@ -57,6 +67,9 @@ public class CarWashView extends SimView {
 		System.out.print(updateInfo);
 	}
 
+	/**
+	 * Called before the simulator is started for setup info of the CarWash
+	 */
 	@Override
 	public void beforeRun() {
 		String titleTemplate = "%10s %10s %10s %10s %10s %10s %10s %10s %10s%n";
@@ -73,7 +86,9 @@ public class CarWashView extends SimView {
 		System.out.printf(titleTemplate, "Time", "Event", "Id", "Fast", "Slow", "IdleTime", "QueueTime", "QueueSize", "Rejected");
 		
 	}
-
+	/**
+	 * Called after the simulator is stopped for cleanup and summary of the CarWash
+	 */
 	@Override
 	public void afterRun() {
 		System.out.print("-----------------------------------------------------------------------------\n");
