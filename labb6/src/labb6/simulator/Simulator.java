@@ -5,7 +5,6 @@ package labb6.simulator;
  */
 public class Simulator {
 
-	private SimState simState;
 	private SimView simView;
 	private EventQueue eventQueue;
 
@@ -16,7 +15,6 @@ public class Simulator {
 	 * @param queue a priorityQueue already containing a start and stop event
 	 */
 	public Simulator(SimState state, SimView view, EventQueue queue) {
-		this.simState = state;
 		this.simView = view;
 		this.eventQueue = queue;
 	}
