@@ -23,7 +23,7 @@ public class CarWashState extends SimState{
 	private double previousQueueTime = 0;
 	private double previousIdleTime = 0;
 	
-	private	final int totalFastMachines = 2;
+	private final int totalFastMachines = 2;
 	private final int totalSlowMachines = 2;
 	private int availableFastMachines = totalFastMachines;
 	private int availableSlowMachines = totalSlowMachines;
