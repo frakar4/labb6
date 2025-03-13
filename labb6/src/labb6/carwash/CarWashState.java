@@ -140,19 +140,19 @@ public class CarWashState extends SimState{
 	}
 	
 	void leaveFastMachine() {
-		availableFastMachines--;
-	}
-	
-	void enterFastMachine() {
 		availableFastMachines++;
 	}
 	
+	void enterFastMachine() {
+		availableFastMachines--;
+	}
+	
 	void leaveSlowMachine() {
-		availableSlowMachines--;
+		availableSlowMachines++;
 	}
 	
 	void enterSlowMachine() {
-		availableSlowMachines++;
+		availableSlowMachines--;
 	}
 	
 }
