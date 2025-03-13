@@ -2,6 +2,9 @@ package labb6.simulator;
 
 /**
  * A general event
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public abstract class Event implements Comparable<Event>{
 

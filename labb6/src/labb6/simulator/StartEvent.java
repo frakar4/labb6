@@ -2,6 +2,9 @@ package labb6.simulator;
 
 /**
  * A general event that will always be run first
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public class StartEvent extends Event{
 	

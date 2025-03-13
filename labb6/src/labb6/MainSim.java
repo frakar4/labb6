@@ -9,6 +9,11 @@ import labb6.simulator.Simulator;
 import labb6.simulator.StopEvent;
 import labb6.simulator.StartEvent;
 
+/**
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
+ */
 public class MainSim {
 	public static void main(String[] args) {
 		CarWashState state = new CarWashState();
