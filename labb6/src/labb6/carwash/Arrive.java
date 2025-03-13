@@ -25,7 +25,7 @@ public class Arrive extends Event {
 		state.eventFinished(this);
 		
 		if (state.fastAvailable()) {
-
+			
 			state.enterFastMachine();
 			car.setMachine("FAST");
 			queue.addEvent(new Leave(this.getTime(),state.getFastWashTime(),car,state));
