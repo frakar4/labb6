@@ -17,7 +17,7 @@ public class Arrive extends Event {
 	 * @param state the state that the event will modify
 	 */
 	public Arrive(double time, CarWashState state) {
-		super(time, "Arrive"); 
+		super(time); 
 		this.state = state;
 	}
 

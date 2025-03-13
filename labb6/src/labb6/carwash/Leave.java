@@ -19,7 +19,7 @@ public class Leave extends Event{
 	 * @param state the state the event will modify
 	 */
 	public Leave(double time, double washTime, Car car, CarWashState state) {
-		super(time + washTime, "Leave");
+		super(time + washTime);
 		this.car = car;
 		carWashState = state;
 		

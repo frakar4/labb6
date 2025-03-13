@@ -29,26 +29,30 @@ public class CarWashView extends SimView {
 		String stopTemplate = "%10.2f %10s %21s %10s %10.2f %10.2f %10s %10s%n";
 		String updateInfo = "";
 		
-		if (arg instanceof StopEvent) {
+		if (arg instanceof StartEvent) {
+			StartEvent event = (StartEvent) arg;
+			updateInfo = String.format("%10.2f %10s%n", event.getTime(), "Start");
+		}
+		else if (arg instanceof StopEvent) {
 			StopEvent event = (StopEvent) arg;
 			state.updateTotalQueueTime(event);
-			updateInfo = String.format(stopTemplate, event.getTime(), event.getName(), state.getAvailableFast(), state.getAvailableSlow(),
+			updateInfo = String.format(stopTemplate, event.getTime(), "Stop", state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
 		else if (arg instanceof Arrive) {
 			Arrive event = (Arrive) arg;
 			biggestId = (event.getCar().getCarID() > biggestId) ? event.getCar().getCarID() : biggestId;
-			updateInfo = String.format(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
+			updateInfo = String.format(template, event.getTime(), "Arrive", event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
 		else if (arg instanceof Leave) {
 			Leave event = (Leave) arg;
-			updateInfo = String.format(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
+			updateInfo = String.format(template, event.getTime(), "Leave", event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
-		else { //StartEvent använder denna generella med lite info i.
+		else {
 			Event event = (Event) arg;
-			updateInfo = String.format("%10.2f %10s%n", event.getTime(), event.getName());
+			updateInfo = String.format("%10.2f %10s%n", event.getTime(), "Unknown");
 		}
 		System.out.print(updateInfo);
 	}
