@@ -8,7 +8,6 @@ package labb6.simulator;
  */
 public class Simulator {
 
-	private SimView simView;
 	private EventQueue eventQueue;
 
 	/**
@@ -17,8 +16,7 @@ public class Simulator {
 	 * @param view a view that will observe the state
 	 * @param queue a priorityQueue already containing a start and stop event
 	 */
-	public Simulator(SimState state, SimView view, EventQueue queue) {
-		this.simView = view;
+	public Simulator(SimState state, EventQueue queue) {
 		this.eventQueue = queue;
 	}
 
@@ -27,7 +25,6 @@ public class Simulator {
 	 * and execute it until it encounters a StopEvent
 	 */
 	public void run() {
-		simView.beforeRun();
 		while (true) {
 			Event currentEvent = eventQueue.getNextEvent();
 			currentEvent.execute(eventQueue);
@@ -35,7 +32,6 @@ public class Simulator {
 				break;
 			}
 		}
-		simView.afterRun();
 	}
 
 }

@@ -22,7 +22,10 @@ public class MainSim {
 		Event[] initialEvents = {new StartEvent(state), new StopEvent(15.0, state)};
 		EventQueue queue = new EventQueue(initialEvents);
 		queue.addEvent(new Arrive(state.newEventTime(), state));
-		Simulator sim = new Simulator(state, view, queue);
+		Simulator sim = new Simulator(state, queue);
+		
+		view.beforeRun();
 		sim.run();
+		view.afterRun();
 	}
 }
