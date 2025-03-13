@@ -17,7 +17,7 @@ public class Arrive extends Event {
 	 * @param state the state that the event will modify
 	 */
 	public Arrive(double time, CarWashState state) {
-		super(time, "Arrive"); 
+		super(time); 
 		this.state = state;
 	}
 
@@ -38,13 +38,13 @@ public class Arrive extends Event {
 		if (state.fastAvailable()) {
 			
 			state.enterFastMachine();
-			car.setMachine("FAST");
+			car.setMachine(Machine.FAST);
 			queue.addEvent(new Leave(this.getTime(),state.getFastWashTime(),car,state));
 			
 		} else if (state.slowAvailable()) {
 
 			state.enterSlowMachine();
-			car.setMachine("SLOW");
+			car.setMachine(Machine.SLOW);
 			queue.addEvent(new Leave(this.getTime(),state.getSlowWashTime(),car,state));
 			
 		} else if (!state.carQueueFull()) {

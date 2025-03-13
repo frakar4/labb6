@@ -13,7 +13,7 @@ public class StartEvent extends Event{
 	 * @param the state that the event should modify
 	 */
 	public StartEvent(SimState state) {
-		super(0.00,"Start");
+		super(0.00);
 		this.state = state;
 	}
 

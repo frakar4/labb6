@@ -13,7 +13,7 @@ public class StopEvent extends Event {
 	 * @param the state that the event will modify
 	 */
 	public StopEvent(double endTime, SimState state) {
-		super(endTime,"Stop");
+		super(endTime);
 		this.state = state;
 	}
 

@@ -19,7 +19,7 @@ public class Leave extends Event{
 	 * @param state the state the event will modify
 	 */
 	public Leave(double time, double washTime, Car car, CarWashState state) {
-		super(time + washTime, "Leave");
+		super(time + washTime);
 		this.car = car;
 		carWashState = state;
 		
@@ -36,25 +36,27 @@ public class Leave extends Event{
 		Car firstCar = null;
 		double washTime = 0;
 		
-		if(car.getMachine().equals("FAST")) {
+		if(car.getMachine() == Machine.FAST) {
 			carWashState.leaveFastMachine();
-			if(!carWashState.carQueueEmpty()) {
+			if(carWashState.getCurrentQueueSize() > 0) {
 				firstCar = carWashState.getFirstCarFromQueue();
-				firstCar.setMachine("FAST");
+				firstCar.setMachine(Machine.FAST);
 				carWashState.enterFastMachine();
 				washTime = carWashState.getFastWashTime();
+				queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
 			}
 			
-		} else if(car.getMachine().equals("SLOW")) {
+		} else if(car.getMachine() == Machine.SLOW) {
 			carWashState.leaveSlowMachine();
-			if(!carWashState.carQueueEmpty()) {
+			if(carWashState.getCurrentQueueSize() > 0) {
 				firstCar = carWashState.getFirstCarFromQueue();
-				firstCar.setMachine("SLOW");
+				firstCar.setMachine(Machine.SLOW);
 				carWashState.enterSlowMachine();
 				washTime = carWashState.getSlowWashTime();
+				queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
 			}
 		}
-		queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
+		
 		carWashState.eventFinished(this);
 		
 	}

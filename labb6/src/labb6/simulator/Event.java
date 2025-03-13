@@ -6,19 +6,13 @@ package labb6.simulator;
 public abstract class Event implements Comparable<Event>{
 
 	private double executeTime;
-	private String name;
 
 	/**
 	 * Creates a new event
 	 * @param time The time the event will be executed
 	 */
-	public Event(double time, String name) {
+	public Event(double time) {
 		this.executeTime = time;
-		this.name = name;
-	}
-	
-	public String getName() {
-		return name;
 	}
 	
 	/**
