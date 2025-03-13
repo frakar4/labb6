@@ -9,16 +9,17 @@ import java.util.LinkedList;
 import labb6.random.*;
 
 /**
- * The central state of the car wash which the event will modify and the 
- * view will read
+ * The central state of the car wash which the event will modify and the view
+ * will read
+ * 
  * @author Edvin Ingemarsson
  * @author Frans Karlsson
  * @author Linnea Villskog
  */
-public class CarWashState extends SimState{
-	
+public class CarWashState extends SimState {
+
 	private CarFactory carFactory = new CarFactory();
-	
+
 	private int rejectedCars = 0;
 	private int maxQueueSize = 5;
 	Deque<Car> carQueue = new LinkedList<Car>();
@@ -44,7 +45,7 @@ public class CarWashState extends SimState{
 	private UniformRandomStream fastMachineTime = new UniformRandomStream(fastLowerDist, fastUpperDist, seed);
 	private UniformRandomStream slowMachineTime = new UniformRandomStream(slowLowerDist, slowUpperDist, seed);
 	private ExponentialRandomStream nextArrivalTime = new ExponentialRandomStream(lambda, seed);
-	
+
 	// ------------ Car Queue --------------
 
 	/**
@@ -73,7 +74,7 @@ public class CarWashState extends SimState{
 	public Car getFirstCarFromQueue() {
 		return carQueue.poll();
 	}
-	
+
 	/**
 	 * Return how many cars are are waiting in the queue
 	 * 
@@ -82,9 +83,10 @@ public class CarWashState extends SimState{
 	public int getCarsInQueue() {
 		return carQueue.size();
 	}
-	
+
 	/**
 	 * Returns a new car with an incremented id
+	 * 
 	 * @return a car
 	 */
 	public Car newCar() {
@@ -92,7 +94,7 @@ public class CarWashState extends SimState{
 	}
 
 	// ------------ Times --------------
-	
+
 	/**
 	 * Returns the time that the next car will arrive on
 	 * 
@@ -120,7 +122,7 @@ public class CarWashState extends SimState{
 	public double getSlowWashTime() {
 		return slowMachineTime.next();
 	}
-	
+
 	/**
 	 * Return the total amount of time a machine has been empty
 	 * 
@@ -138,7 +140,7 @@ public class CarWashState extends SimState{
 	public double getTotalQueueTime() {
 		return totalQueueTime;
 	}
-	
+
 	/**
 	 * Get the upper and lower distribution of the time a fast machine can take
 	 * 
@@ -196,7 +198,7 @@ public class CarWashState extends SimState{
 	}
 
 	// ------------ Washing Machines --------------
-	
+
 	/**
 	 * Return whether a fast machine is available
 	 * 
@@ -214,7 +216,6 @@ public class CarWashState extends SimState{
 	boolean slowAvailable() {
 		return availableSlowMachines > 0;
 	}
-	
 
 	/**
 	 * Return how many fast machines are currently available
@@ -233,7 +234,7 @@ public class CarWashState extends SimState{
 	public int getAvailableSlow() {
 		return availableSlowMachines;
 	}
-	
+
 	/**
 	 * Return the total amount of fast machines
 	 * 
@@ -260,14 +261,14 @@ public class CarWashState extends SimState{
 	public int getRejectedCars() {
 		return rejectedCars;
 	}
-	
+
 	/**
 	 * Reject a car, incrementing rejectedCars
 	 */
 	public void carRejected() {
 		rejectedCars++;
 	}
-	
+
 	// ------------ Enters/Leaves Washing Machines --------------
 	/**
 	 * A car leaves a fast machine, leaving a machine available

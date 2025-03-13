@@ -5,6 +5,7 @@ import labb6.simulator.EventQueue;
 
 /**
  * An event representing a car leaving the car wash
+ * 
  * @author Edvin Ingemarsson
  * @author Frans Karlsson
  * @author Linnea Villskog
@@ -30,8 +31,8 @@ public class Leave extends Event {
 	}
 
 	/**
-	 * Will be run when the event is executed.
-	 * Modifies the state for when a car leaves
+	 * Will be run when the event is executed. Modifies the state for when a car
+	 * leaves
 	 */
 	@Override
 	public void execute(EventQueue queue) {
@@ -40,29 +41,29 @@ public class Leave extends Event {
 		Car firstCar = null;
 
 		if (car.getMachine() == Machine.FAST) {
-			
+
 			carWashState.leaveFastMachine();
 
-			if(carWashState.getCarsInQueue() > 0) {
+			if (carWashState.getCarsInQueue() > 0) {
 				firstCar = carWashState.getFirstCarFromQueue();
 				firstCar.setMachine(Machine.FAST);
-				
+
 				carWashState.enterFastMachine();
-				
+
 				queue.addEvent(new Leave(this.getTime(), carWashState.getFastWashTime(), firstCar, carWashState));
 			}
 
 		} else if (car.getMachine() == Machine.SLOW) {
-			
+
 			carWashState.leaveSlowMachine();
 
-			if(carWashState.getCarsInQueue() > 0) {
+			if (carWashState.getCarsInQueue() > 0) {
 
 				firstCar = carWashState.getFirstCarFromQueue();
 				firstCar.setMachine(Machine.SLOW);
-				
+
 				carWashState.enterSlowMachine();
-				
+
 				queue.addEvent(new Leave(this.getTime(), carWashState.getSlowWashTime(), firstCar, carWashState));
 			}
 		}

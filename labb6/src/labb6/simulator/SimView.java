@@ -4,6 +4,7 @@ import java.util.Observer;
 
 /**
  * Draws the result of the simulator
+ * 
  * @author Edvin Ingemarsson
  * @author Frans Karlsson
  * @author Linnea Villskog
@@ -14,6 +15,7 @@ public abstract class SimView implements Observer {
 
 	/**
 	 * Create a new instance of {@code SimView}
+	 * 
 	 * @param the {@code SimState} that the view should read from
 	 */
 	public SimView(SimState state) {
@@ -26,7 +28,7 @@ public abstract class SimView implements Observer {
 	public abstract void beforeRun();
 
 	/**
-	 * Called after the simulator is stopped for cleanup and summary 
+	 * Called after the simulator is stopped for cleanup and summary
 	 */
 	public abstract void afterRun();
 }

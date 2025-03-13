@@ -4,12 +4,13 @@ import java.util.Observable;
 
 /**
  * The central state of the simulator
+ * 
  * @author Edvin Ingemarsson
  * @author Frans Karlsson
  * @author Linnea Villskog
  */
 public class SimState extends Observable {
-	
+
 	/**
 	 * Notify all observers that an event is finished and the state can be read
 	 */
@@ -25,6 +26,7 @@ public class SimState extends Observable {
 
 	/**
 	 * Set whether the simulator is running or no
+	 * 
 	 * @param the state the simulator will have
 	 */
 	public void setRunState(boolean newState) {
