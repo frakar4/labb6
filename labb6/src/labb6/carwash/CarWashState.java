@@ -10,9 +10,6 @@ import labb6.random.*;
 
 public class CarWashState extends SimState{
 	
-	//TODO Kontrollera vad som ska vara publikt, privat och/eller static
-	
-	static String currentEvent = "";
 	private int rejectedCars = 0;
 	private int maxQueueSize = 5;
 	Deque<Car> carQueue = new LinkedList<Car>();
@@ -23,10 +20,10 @@ public class CarWashState extends SimState{
 	private double previousQueueTime = 0;
 	private double previousIdleTime = 0;
 	
-	private int totalFastMachines = 2;
-	private int totalSlowMachines = 2;
-	private int availableFastMachines = 2;
-	private int availableSlowMachines = 2;
+	private	final int totalFastMachines = 2;
+	private final int totalSlowMachines = 2;
+	private int availableFastMachines = totalFastMachines;
+	private int availableSlowMachines = totalSlowMachines;
 	
 	
 	private double fastLowerDist = 2.8;

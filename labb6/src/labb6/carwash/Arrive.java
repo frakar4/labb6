@@ -15,22 +15,23 @@ public class Arrive extends Event {
 
 	@Override
 	public void execute(EventQueue queue) {
-		CarWashState.currentEvent = "ARRIVE";
 		queue.addEvent(new Arrive(state.newEventTime(), state));
 		
 		Car car = new Car();
 		this.car = car;
+		state.updateTotalIdleTime(this);
+		state.updateTotalQueueTime(this);
+		state.eventFinished(this);
 		
 		if (state.fastAvailable()) {
+			
 			state.enterFastMachine();
-			state.updateTotalIdleTime(this);
 			car.setMachine("FAST");
 			queue.addEvent(new Leave(this.getTime(),state.getFastWashTime(),car,state));
 			
 		} else if (state.slowAvailable()) {
-			
+
 			state.enterSlowMachine();
-			state.updateTotalIdleTime(this);
 			car.setMachine("SLOW");
 			queue.addEvent(new Leave(this.getTime(),state.getSlowWashTime(),car,state));
 			
@@ -40,7 +41,6 @@ public class Arrive extends Event {
 			state.carRejected();
 			return;
 		}
-		state.eventFinished(this);
 	}
 	
 	public Car getCar() {

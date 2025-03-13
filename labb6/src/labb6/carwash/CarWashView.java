@@ -11,10 +11,13 @@ import labb6.simulator.StopEvent;
 public class CarWashView extends SimView {
 	
 	CarWashState state;
+	int biggestId;
+	
 
 	public CarWashView(CarWashState state) {
 		super(state);
 		this.state = state;
+		this.biggestId = 0;
 	}
 
 	@Override
@@ -32,11 +35,14 @@ public class CarWashView extends SimView {
 		}
 		else if (arg instanceof StopEvent) {
 			StopEvent event = (StopEvent) arg;
+			state.updateTotalQueueTime(event);
 			System.out.printf(stopTemplate, event.getTime(), event.getName(), state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
 		else if (arg instanceof Arrive) {
 			Arrive event = (Arrive) arg;
+			if (event.getCar().getCarID() > biggestId)
+				biggestId = event.getCar().getCarID();
 			System.out.printf(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
@@ -71,9 +77,11 @@ public class CarWashView extends SimView {
 		System.out.print("-----------------------------------------------------------------------------\n");
 		System.out.printf("%-10s %8.2f%n", "Total idle machine time: ", state.getTotalIdleTime());
 		System.out.printf("%-10s %10.2f%n", "Total queueing time: ", state.getTotalQueueTime());
-		System.out.printf("%-10s %10s%n", "Mean queueing time: ", "???");
+		System.out.printf("%-10s %10.2f%n", "Mean queueing time: ", state.getTotalQueueTime()/(biggestId + 1 - state.getRejectedCars()));
 		System.out.printf("%-10s %13s%n", "Rejected cars: ", state.getRejectedCars());
 		
 	}
+	
+	
 
 }
