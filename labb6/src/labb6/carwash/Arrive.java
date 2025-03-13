@@ -3,16 +3,28 @@ package labb6.carwash;
 import labb6.simulator.Event;
 import labb6.simulator.EventQueue;
 
+/**
+ * Represents a car arriving at the car wash
+ */
 public class Arrive extends Event {
 
 	private CarWashState state;
 	private Car car;
 
+	/**
+	 * Create a new start event
+	 * @param time the time the event will occur on
+	 * @param state the state that the event will modify
+	 */
 	public Arrive(double time, CarWashState state) {
 		super(time, "Arrive"); 
 		this.state = state;
 	}
 
+	/**
+	 * Will be run when the event is executed.
+	 * Modifies the state for when a car arrives
+	 */
 	@Override
 	public void execute(EventQueue queue) {
 		queue.addEvent(new Arrive(state.newEventTime(), state));
@@ -43,6 +55,10 @@ public class Arrive extends Event {
 		}
 	}
 	
+	/**
+	 * Get the car this event refers to
+	 * @return
+	 */
 	public Car getCar() {
 		return car;
 	}
