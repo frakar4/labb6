@@ -172,7 +172,7 @@ public class CarWashState extends SimState{
 	 * 
 	 * @return an integer
 	 */
-	public int carsInQueue() {
+	public int getCarsInQueue() {
 		return carQueue.size();
 	}
 
