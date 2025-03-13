@@ -6,24 +6,24 @@ import labb6.simulator.EventQueue;
 /**
  * An event representing a car leaving the car wash
  */
-public class Leave extends Event{
-	
+public class Leave extends Event {
+
 	private Car car;
 	private CarWashState carWashState;
-	
+
 	/**
 	 * Create a new leave event
 	 * 
 	 * @param time     the time the event will occur on
 	 * @param washTime the amount of time the the car will spend in a machine
-	 * @param car the car this event refers to
-	 * @param state the state the event will modify
+	 * @param car      the car this event refers to
+	 * @param state    the state the event will modify
 	 */
 	public Leave(double time, double washTime, Car car, CarWashState state) {
 		super(time + washTime);
 		this.car = car;
 		carWashState = state;
-		
+
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class Leave extends Event{
 	 */
 	@Override
 	public void execute(EventQueue queue) {
-		
+
 		carWashState.updateTotalQueueTime(this);
 		Car firstCar = null;
 
@@ -62,17 +62,18 @@ public class Leave extends Event{
 				queue.addEvent(new Leave(this.getTime(), carWashState.getSlowWashTime(), firstCar, carWashState));
 			}
 		}
-		
+
 		carWashState.eventFinished(this);
-		
+
 	}
-	
+
 	/**
 	 * Get the car this event refers to
+	 * 
 	 * @return the car this event refers to
 	 */
 	public Car getCar() {
 		return car;
 	}
-	
+
 }
