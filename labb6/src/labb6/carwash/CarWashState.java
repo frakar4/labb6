@@ -11,6 +11,9 @@ import labb6.random.*;
 /**
  * The central state of the car wash which the event will modify and the 
  * view will read
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public class CarWashState extends SimState{
 	

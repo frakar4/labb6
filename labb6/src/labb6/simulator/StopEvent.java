@@ -2,6 +2,9 @@ package labb6.simulator;
 
 /**
  * A general event that will stop the simulator when encountered
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public class StopEvent extends Event {
 	

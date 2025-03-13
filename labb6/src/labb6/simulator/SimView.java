@@ -4,6 +4,9 @@ import java.util.Observer;
 
 /**
  * Draws the result of the simulator
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public abstract class SimView implements Observer {
 

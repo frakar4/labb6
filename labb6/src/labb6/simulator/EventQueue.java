@@ -5,6 +5,9 @@ import java.util.PriorityQueue;
 /**
  * A sorted list of events where the next event can be called and
  * new ones can be added to
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public class EventQueue {
 	private PriorityQueue<Event> queue;

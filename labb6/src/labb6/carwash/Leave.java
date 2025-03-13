@@ -5,6 +5,9 @@ import labb6.simulator.EventQueue;
 
 /**
  * An event representing a car leaving the car wash
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public class Leave extends Event {
 

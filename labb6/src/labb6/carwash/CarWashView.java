@@ -9,12 +9,14 @@ import labb6.simulator.StopEvent;
 
 /**
  * Draws the result of the carwash simulator
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
-
 public class CarWashView extends SimView {
 	
 	CarWashState state;
-	int biggestId;
+	int biggestId = 0;
 	
 
 	/**
@@ -24,7 +26,6 @@ public class CarWashView extends SimView {
 	public CarWashView(CarWashState state) {
 		super(state);
 		this.state = state;
-		this.biggestId = 0;
 	}
 
 	/**
@@ -35,8 +36,8 @@ public class CarWashView extends SimView {
 		if (!(arg instanceof Event))
 			throw new IllegalArgumentException("CarWashView needs an Event.");
 		
-		String template = "%10.2f %10s %10s %10s %10s %10.2f %10.2f %10s %10s%n";
-		String stopTemplate = "%10.2f %10s %21s %10s %10.2f %10.2f %10s %10s%n";
+		String template = "%10.2f %10s %10s %8s %10s %9.2f %9.2f %10s %10s%n";
+		String stopTemplate = "%10.2f %10s %19s %10s %9.2f %9.2f %10s %10s%n";
 		String updateInfo;
 		
 		if (arg instanceof StartEvent) {
@@ -92,10 +93,10 @@ public class CarWashView extends SimView {
 	@Override
 	public void afterRun() {
 		System.out.print("--------------------------------------------------------------------------------------------------------\n");
-		System.out.printf("%-10s %8.2f%n", "Total idle machine time: ", state.getTotalIdleTime());
-		System.out.printf("%-10s %10.2f%n", "Total queueing time: ", state.getTotalQueueTime());
-		System.out.printf("%-10s %10.2f%n", "Mean queueing time: ", state.getTotalQueueTime()/(biggestId + 1 - state.getRejectedCars()));
-		System.out.printf("%-10s %13s%n", "Rejected cars: ", state.getRejectedCars());
+		System.out.printf("%-25s %5.2f%n", "Total idle machine time: ", state.getTotalIdleTime());
+		System.out.printf("%-25s %5.2f%n", "Total queueing time: ", state.getTotalQueueTime());
+		System.out.printf("%-25s %5.2f%n", "Mean queueing time: ", state.getTotalQueueTime()/(biggestId + 1 - state.getRejectedCars()));
+		System.out.printf("%-25s %5s%n", "Rejected cars: ", state.getRejectedCars());
 		
 	}
 	

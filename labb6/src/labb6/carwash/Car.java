@@ -3,6 +3,9 @@ package labb6.carwash;
 /**
  * A car that can arrive and leave and take up space in 
  * a queue or a machine
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public class Car {
 	

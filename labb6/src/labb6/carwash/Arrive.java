@@ -5,6 +5,9 @@ import labb6.simulator.EventQueue;
 
 /**
  * Represents a car arriving at the car wash
+ * @author Edvin Ingemarsson
+ * @author Frans Karlsson
+ * @author Linnea Villskog
  */
 public class Arrive extends Event {
 
