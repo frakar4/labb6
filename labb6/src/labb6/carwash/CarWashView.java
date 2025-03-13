@@ -27,31 +27,31 @@ public class CarWashView extends SimView {
 		
 		String template = "%10.2f %10s %10s %10s %10s %10.2f %10.2f %10s %10s%n";
 		String stopTemplate = "%10.2f %10s %21s %10s %10.2f %10.2f %10s %10s%n";
+		String updateInfo = "";
 		
 		final String spacing = "\t";		
 		if (arg instanceof StartEvent) {
 			StartEvent event = (StartEvent) arg;
-			System.out.printf("%10.2f %10s%n", event.getTime(), event.getName());
+			updateInfo = String.format("%10.2f %10s%n", event.getTime(), event.getName());
 		}
 		else if (arg instanceof StopEvent) {
 			StopEvent event = (StopEvent) arg;
 			state.updateTotalQueueTime(event);
-			System.out.printf(stopTemplate, event.getTime(), event.getName(), state.getAvailableFast(), state.getAvailableSlow(),
+			updateInfo = String.format(stopTemplate, event.getTime(), event.getName(), state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
 		else if (arg instanceof Arrive) {
 			Arrive event = (Arrive) arg;
-			if (event.getCar().getCarID() > biggestId)
-				biggestId = event.getCar().getCarID();
-			System.out.printf(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
+			biggestId = (event.getCar().getCarID() > biggestId) ? event.getCar().getCarID() : biggestId;
+			updateInfo = String.format(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
 		else if (arg instanceof Leave) {
 			Leave event = (Leave) arg;
-			System.out.printf(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
+			updateInfo = String.format(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
-		
+		System.out.print(updateInfo);
 	}
 
 	@Override
