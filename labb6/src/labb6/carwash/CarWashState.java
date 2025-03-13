@@ -8,6 +8,10 @@ import java.util.LinkedList;
 
 import labb6.random.*;
 
+/**
+ * The central state of the car wash which the event will modify and the 
+ * view will read
+ */
 public class CarWashState extends SimState{
 	
 	private int rejectedCars = 0;
