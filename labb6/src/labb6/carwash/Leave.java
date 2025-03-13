@@ -9,7 +9,7 @@ public class Leave extends Event{
 	private CarWashState carWashState;
 	//TODO en del beräkningar att göra
 	public Leave(double time, double washTime, Car car, CarWashState state) {
-		super(time + washTime);
+		super(time + washTime, "Leave");
 		this.car = car;
 		carWashState = state;
 		
@@ -17,7 +17,8 @@ public class Leave extends Event{
 
 	@Override
 	public void execute(EventQueue queue) {
-		CarWashState.currentEvent = "LEAVE";
+		
+		carWashState.updateTotalQueueTime(this);
 		
 		if(car.getMachine().equals("FAST")) {
 			carWashState.leaveFastMachine();
@@ -39,6 +40,12 @@ public class Leave extends Event{
 				queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
 			}
 		}
+		carWashState.eventFinished(this);
+		
 	}
-
+	
+	public Car getCar() {
+		return car;
+	}
+	
 }
