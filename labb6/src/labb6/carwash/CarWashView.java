@@ -41,8 +41,7 @@ public class CarWashView extends SimView {
 		}
 		else if (arg instanceof Arrive) {
 			Arrive event = (Arrive) arg;
-			if (event.getCar().getCarID() > biggestId)
-				biggestId = event.getCar().getCarID();
+			biggestId = (event.getCar().getCarID() > biggestId) ? event.getCar().getCarID() : biggestId;
 			System.out.printf(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
