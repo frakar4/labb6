@@ -1,5 +1,16 @@
 package labb6.carwash;
 
+/**
+ *	Washing machines to choose from
+ */
 public enum Machine {
-	SLOW,FAST
+	/**
+	 *  slow washing machine
+	 */
+	SLOW,
+	
+	/**
+	 * fast washing machine
+	 */
+	FAST;
 }
