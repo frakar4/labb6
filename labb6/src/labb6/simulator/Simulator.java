@@ -31,7 +31,6 @@ public class Simulator {
 			Event currentEvent = eventQueue.getNextEvent();
 			currentEvent.execute(eventQueue);
 			if(currentEvent instanceof StopEvent) {
-				currentEvent.execute(eventQueue);
 				break;
 			}
 		}
