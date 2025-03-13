@@ -17,6 +17,8 @@ import labb6.random.*;
  */
 public class CarWashState extends SimState{
 	
+	private CarFactory carFactory = new CarFactory();
+	
 	private int rejectedCars = 0;
 	private int maxQueueSize = 5;
 	Deque<Car> carQueue = new LinkedList<Car>();
@@ -79,6 +81,14 @@ public class CarWashState extends SimState{
 	 */
 	public int getCarsInQueue() {
 		return carQueue.size();
+	}
+	
+	/**
+	 * Returns a new car with an incremented id
+	 * @return a car
+	 */
+	public Car newCar() {
+		return carFactory.createCar();
 	}
 
 	// ------------ Times --------------

@@ -32,7 +32,7 @@ public class Arrive extends Event {
 	public void execute(EventQueue queue) {
 		queue.addEvent(new Arrive(state.newEventTime(), state));
 		
-		Car car = new Car();
+		Car car = state.newCar();
 		this.car = car;
 		state.updateTotalIdleTime(this);
 		state.updateTotalQueueTime(this);
