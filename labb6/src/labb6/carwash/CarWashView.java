@@ -27,7 +27,7 @@ public class CarWashView extends SimView {
 		
 		String template = "%10.2f %10s %10s %10s %10s %10.2f %10.2f %10s %10s%n";
 		String stopTemplate = "%10.2f %10s %21s %10s %10.2f %10.2f %10s %10s%n";
-		String updateInfo = "";
+		String updateInfo;
 		
 		if (arg instanceof StartEvent) {
 			StartEvent event = (StartEvent) arg;
