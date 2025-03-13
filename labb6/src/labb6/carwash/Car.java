@@ -8,7 +8,7 @@ public class Car {
 	
 	private static int nextId = 0;
 	private int id;
-	private String fromMachine = "";
+	private Machine selectedMachine;
 	
 	/**
 	 * Create a new car with an unique id
@@ -28,15 +28,15 @@ public class Car {
 	 * Set what type of machine the car is currently being washed in
 	 * @param machine the machine the car is in
 	 */
-	public void setMachine(String machine) {
-		this.fromMachine = machine;
+	public void setMachine(Machine machine) {
+		this.selectedMachine = machine;
 	}
 	
 	/**
 	 * Get the machine the car is currently being washed in
 	 * @return the machine
 	 */
-	public String getMachine() {
-		return fromMachine;
+	public Machine getMachine() {
+		return selectedMachine;
 	}
 }
