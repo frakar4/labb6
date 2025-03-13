@@ -50,15 +50,6 @@ public class CarWashState extends SimState{
 	}
 
 	/**
-	 * Return whether the queue is empty
-	 * 
-	 * @return a boolean
-	 */
-	boolean carQueueEmpty() {
-		return carQueue.size() == 0;
-	}
-
-	/**
 	 * Return whether the queue is full
 	 * 
 	 * @return a boolean
@@ -130,6 +121,10 @@ public class CarWashState extends SimState{
 	boolean slowAvailable() {
 		return availableSlowMachines > 0;
 	}
+	
+	
+	
+	
 
 	/**
 	 * Return how many fast machines are currently available
@@ -245,6 +240,10 @@ public class CarWashState extends SimState{
 	void carRejected() {
 		rejectedCars++;
 	}
+	
+	
+	
+	
 
 	/**
 	 * Update the total time a machine has been idling
