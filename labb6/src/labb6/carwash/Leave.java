@@ -43,6 +43,7 @@ public class Leave extends Event{
 				firstCar.setMachine(Machine.FAST);
 				carWashState.enterFastMachine();
 				washTime = carWashState.getFastWashTime();
+				queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
 			}
 			
 		} else if(car.getMachine() == Machine.SLOW) {
@@ -52,9 +53,10 @@ public class Leave extends Event{
 				firstCar.setMachine(Machine.SLOW);
 				carWashState.enterSlowMachine();
 				washTime = carWashState.getSlowWashTime();
+				queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
 			}
 		}
-		queue.addEvent(new Leave(this.getTime(), washTime, firstCar,carWashState));
+		
 		carWashState.eventFinished(this);
 		
 	}
