@@ -36,8 +36,8 @@ public class CarWashView extends SimView {
 		if (!(arg instanceof Event))
 			throw new IllegalArgumentException("CarWashView needs an Event.");
 		
-		String template = "%10.2f %10s %10s %8s %10s %9.2f %9.2f %10s %10s%n";
-		String stopTemplate = "%10.2f %10s %19s %10s %9.2f %9.2f %10s %10s%n";
+		String template = "%10.2f %10s %5s %6s %8s %9.2f %9.2f %10s %10s%n";
+		String stopTemplate = "%10.2f %10s %12s %8s %9.2f %9.2f %10s %10s%n";
 		String updateInfo;
 		
 		if (arg instanceof StartEvent) {
@@ -73,7 +73,7 @@ public class CarWashView extends SimView {
 	 */
 	@Override
 	public void beforeRun() {
-		String titleTemplate = "%10s %10s %10s %10s %10s %10s %10s %10s %10s%n";
+		String titleTemplate = "%10s %10s %5s %8s %8s %10s %10s %10s %10s%n";
 		String message = "Fast Machines: " + state.getTotalFast()+ "\n"
 				+ "Slow Machines: " + state.getTotalSlow() + "\n"
 				+ "Fast Distribution: (" + state.getFastDistribution()[0] + ", " + state.getFastDistribution()[1] + ")\n"
@@ -82,7 +82,7 @@ public class CarWashView extends SimView {
 				+ "Seed = " + state.getSeed() + "\n"
 				+ "Max Queue Size: " + state.getMaxQueueSize() + "\n"
 				
-				+ "--------------------------------------------------------------------------------------------------------";
+				+ "-----------------------------------------------------------------------------------------------";
 		System.out.println(message);
 		System.out.printf(titleTemplate, "Time", "Event", "Id", "Fast", "Slow", "IdleTime", "QueueTime", "QueueSize", "Rejected");
 		
@@ -92,7 +92,7 @@ public class CarWashView extends SimView {
 	 */
 	@Override
 	public void afterRun() {
-		System.out.print("--------------------------------------------------------------------------------------------------------\n");
+		System.out.print("-----------------------------------------------------------------------------------------------\n");
 		System.out.printf("%-25s %5.2f%n", "Total idle machine time: ", state.getTotalIdleTime());
 		System.out.printf("%-25s %5.2f%n", "Total queueing time: ", state.getTotalQueueTime());
 		System.out.printf("%-25s %5.2f%n", "Mean queueing time: ", state.getTotalQueueTime()/(biggestId + 1 - state.getRejectedCars()));
