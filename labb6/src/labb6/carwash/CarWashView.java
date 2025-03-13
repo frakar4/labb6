@@ -29,12 +29,7 @@ public class CarWashView extends SimView {
 		String stopTemplate = "%10.2f %10s %21s %10s %10.2f %10.2f %10s %10s%n";
 		String updateInfo = "";
 		
-		final String spacing = "\t";		
-		if (arg instanceof StartEvent) {
-			StartEvent event = (StartEvent) arg;
-			updateInfo = String.format("%10.2f %10s%n", event.getTime(), event.getName());
-		}
-		else if (arg instanceof StopEvent) {
+		if (arg instanceof StopEvent) {
 			StopEvent event = (StopEvent) arg;
 			state.updateTotalQueueTime(event);
 			updateInfo = String.format(stopTemplate, event.getTime(), event.getName(), state.getAvailableFast(), state.getAvailableSlow(),
@@ -51,13 +46,16 @@ public class CarWashView extends SimView {
 			updateInfo = String.format(template, event.getTime(), event.getName(), event.getCar().getCarID(), state.getAvailableFast(), state.getAvailableSlow(),
 					state.getTotalIdleTime(), state.getTotalQueueTime(), state.getQueueSize(), state.getRejectedCars());
 		}
+		else { //StartEvent använder denna generella med lite info i.
+			Event event = (Event) arg;
+			updateInfo = String.format("%10.2f %10s%n", event.getTime(), event.getName());
+		}
 		System.out.print(updateInfo);
 	}
 
 	@Override
 	public void beforeRun() {
 		String titleTemplate = "%10s %10s %10s %10s %10s %10s %10s %10s %10s%n";
-		String spacing = "\t";
 		String message = "Fast Machines: " + state.getTotalFast()+ "\n"
 				+ "Slow Machines: " + state.getTotalSlow() + "\n"
 				+ "Fast Distribution: (" + state.getFastDistribution()[0] + ", " + state.getFastDistribution()[1] + ")\n"
